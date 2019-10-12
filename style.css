@@ -1,0 +1,864 @@
+html {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    color: white;
+    margin: 0;
+    padding: 0;
+    perspective: 1px;
+    background-color: black;
+    height: 100%;
+    overflow-y:scroll;
+    overflow-x:hidden;
+}
+
+
+/*  ----------------- main header area --------------------- */
+
+header {
+    box-sizing: border-box;
+    height: 100vh;
+    padding: 30vw 0 5vw;
+    position: relative;
+    transform-style: inherit;
+    width: 100vw;
+
+}
+
+header h1 {
+    margin-top:-15vw;
+}
+
+
+
+header::before {
+    bottom: 0;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: block;
+    background-image: url(laptop-bac.jpg);
+    background-size: cover;
+    filter: brightness(50%);
+    
+    transform-origin: center center 0;
+    transform: translateZ(-1px) scale(2);
+    z-index: -1;
+    min-height: 100vh;
+    opacity: 0.9;
+    
+}
+
+header * {
+    font-weight: normal;
+    letter-spacing: 0.2em;
+    text-align: center;
+    margin: 0;
+    
+}
+
+h1 span {
+    animation: anim 2s infinite;
+}
+
+
+
+
+    
+@keyframes anim {
+    0%,100% {
+        color: #fff;
+        filter: blur(2px);
+        text-shadow: 0 0 10px #00b3ff,
+                    0 0 20px #00b3ff,
+                    0 0 40px #00b3ff,
+                    0 0 80px #00b3ff,
+                    0 0 120px #00b3ff,
+                    0 0 200px #00b3ff,
+                    0 0 300px #00b3ff,
+                    0 0 400px #00b3ff;
+    }
+
+    5%,95% {
+        color: #111;
+        filter: blur(0px);
+        text-shadow: 0 0 10px none;
+    }
+}
+
+
+
+
+
+h1 span:nth-child(1) {
+animation-delay: 0s;
+font-size: 10vw;
+}
+
+h1 span:nth-child(2) {
+animation-delay: 0.25s;
+font-size: 10vw;  
+}
+
+h1 span:nth-child(3) {
+animation-delay: 0.5s;
+font-size: 10vw;    
+}
+
+h1 span:nth-child(4) {
+animation-delay: 0.75s;
+font-size: 10vw;
+}
+
+h1 span:nth-child(5) {
+animation-delay: 1s;
+font-size: 10vw; 
+}
+
+h1 span:nth-child(6) {
+animation-delay: 1.25s;
+font-size: 10vw;  
+}
+
+h1 span:nth-child(7) {
+animation-delay: 1.5s;
+font-size: 10vw; 
+}
+
+
+.toggler{
+	position: absolute;
+	top: 0.5rem;
+	left: 0.5rem;
+	width: 60px;
+	height: 60px;
+	z-index: 3;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.hamburger{
+	position: absolute;
+	top: 0.5rem;
+	left: 0.5rem;
+	width: 60px;
+	height: 60px;
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+    background: #111;
+    border: 1px solid #00b3ff;
+    box-shadow: 0 0 300px #00b3ff, 0 0 400px #00b3ff, 0 0 100px #00b3ff, 0 0 50px #00b3ff;
+}
+
+
+
+
+
+
+
+.hamburger>div{
+	position: absolute;
+	width: 60%;
+	height: 3px;
+	border-radius: 1.5px;
+	background-color: #00b3ff;
+    transition: .4s;
+    box-shadow: 0 0 300px #00b3ff, 0 0 400px #00b3ff, 0 0 100px #00b3ff, 0 0 50px #00b3ff;
+}
+
+.hamburger>div:before{
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 3px;
+	border-radius: 1.5px;
+	background-color: #00b3ff;
+	top: -10px;
+	left: 0;
+	transition: .4s;
+}
+
+.hamburger>div:after{
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 3px;
+	border-radius: 1.5px;
+	background-color: #00b3ff;
+	top: 10px;
+	left: 0;
+	transition: .4s;
+}
+
+.toggler:checked + .hamburger>div{
+	transform: rotate(135deg);
+}
+
+.toggler:checked:hover + .hamburger>div{
+	transform: rotate(225deg);
+}
+
+.toggler:checked + .hamburger>div:before, .toggler:checked + .hamburger>div:after{
+	top: 0;
+	transform: rotate(90deg);
+}
+
+.menu{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 10%;
+	height: 100%;
+	visibility: hidden;
+    transition: .6s;
+    font-size: 30px;
+    opacity: 0.9;
+    
+}
+
+.menu > div{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-150%) translateY(-50%);
+    width: 11vw;
+    height: 4000px;
+    
+    
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: .6s;
+    margin-right: 200px;
+    
+    
+}
+
+
+
+.menu > div > div{
+	max-width: 90vw;
+	max-height: 100vh;
+	opacity: 0;
+    transition: .6s;
+    
+}
+
+.menu > div > div > ul > li{
+    list-style: none;
+    margin-top: 5vw;
+    font-family: 'Baloo Da', cursive;
+    margin-left: 10vw;
+    text-shadow:  0 0 50px #00b3ff;
+    border-radius: 2cm;
+    padding: 0px 5px 0px 5px;
+    
+}
+
+.menu > div > div > ul > li:hover {
+    color: black;
+    box-shadow:  0 0 100px #00b3ff, 0 0 50px #00b3ff;
+    background-color: white;
+    transition: .4s;
+    
+}
+
+
+
+.menu > div > div > ul > li > a{
+    text-decoration: none;
+    color: white;
+}
+
+.menu > div > div > ul > li > a:hover{
+    text-decoration: none;
+    color: black;
+}
+
+.toggler:checked ~ .menu{
+	visibility: visible;
+}
+
+.toggler:checked ~ .menu > div{
+	transform: translateX(-50%) translateY(-50%);
+}
+
+.toggler:checked ~ .menu > div > div{
+	opacity: 1;
+}
+
+
+/*  ----------------- Community Features --------------------- */
+
+
+main {
+    background: linear-gradient(0deg, black, transparent);
+    height: 125vh;
+    width: 100%;
+    opacity: 100%;
+   
+}
+
+.community-features {
+    display: grid;
+    grid-template-columns: 5% 22% 21% 22% 5%;
+    grid-template-rows: 200px 25vw 25vw;
+    grid-gap: 5%;
+}
+
+.card h2 {
+    visibility: hidden;
+    
+}
+
+.card p {
+    visibility: hidden;
+}
+
+.card:hover img {
+    opacity: 0;
+    display: none;
+    transition: 4s;
+    
+}
+
+
+
+.card {
+    overflow: hidden;
+    text-align: center;
+    border: 1px solid wheat;
+}
+
+
+
+.card:hover {
+    background: linear-gradient(0deg,transparent ,black);
+    transition: 2s;
+    box-shadow: 0 0 300px #00b3ff,  0 0 100px #00b3ff, 0 0 50px #00b3ff;
+    border: 1px ridge #00b3ff;
+    font-family: 'Wallpoet', cursive;
+    font-size: 20px;
+
+}
+
+.card:hover h2 {
+    visibility: visible;
+    color: white;
+}
+
+.card:hover p {
+    visibility: visible;
+    opacity: 1;
+    color: #5c7fb8;
+    transition: 1s;
+    padding: 5px 5px 5px 5px;
+    font-family: 'Baloo Da', cursive;
+}
+
+/* ------------- Slider ------------- */
+
+.slider-content {
+    width: 100vw;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(0deg, #3c4e52, black);
+  }
+  .slider-wrapper {
+    font-size: 40px;
+    color:#aaa;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .slider{
+    height: 50px;
+    padding-left:15px;
+    overflow: hidden;
+  }
+  .slider div {
+    color:#fff;
+    height: 50px;
+    margin-bottom: 50px;
+    padding: 2px 15px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  .slider-text1 {
+    background: lightgreen;
+    animation: slide 3s linear infinite;
+  }
+  .slider-text2 {
+    background: skyblue;
+  }
+  .slider-text3 {
+    background: lightcoral;
+  }
+  @keyframes slide {
+    0% {margin-top:-300px;}
+    5% {margin-top:-200px;}
+    33% {margin-top:-200px;}
+    38% {margin-top:-100px;}
+    66% {margin-top:-100px;}
+    71% {margin-top:0px;}
+    100% {margin-top:0px;}
+  }
+
+/* -------------- About Us / Info ----------- */
+
+
+#about div {
+    display: inline-block;
+}
+
+#about {
+    height: 550px;
+    background: white;
+    overflow: hidden;
+}
+
+#about-us-left {
+    width: 45%;
+    float: left;
+    margin: 0;
+    text-align: center;
+    overflow: hidden;
+}
+
+#about-us-left h2 {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: grey;
+    font-size: 2rem;
+}
+
+#about-us-paragraph1 {
+    color: grey;
+    
+    padding-left: 10px;
+}
+
+#about-us-paragraph2 {
+    height: 0px;
+    opacity: 0;
+    transform: translateX(-50%);
+    color: black;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding-left: 10px;
+    transition: 0.6s;
+    opacity: 0;
+    font-size: 1.15vw;
+}
+
+#about:hover #about-us-paragraph2 {
+    height: 300px;
+    opacity: 1;
+    transform: translateX(0%);
+    transition: 1.5s;
+    opacity: 1;
+    
+}
+
+#about-us-right {
+    width: 45%;
+    float: right;
+    text-align: center;
+    overflow: hidden;
+}
+
+#about-us-right img {
+    width: 170px;
+    padding: 15px;
+    height: 70px;
+}
+
+#about-us-right h2 {
+    font-size: 2rem;
+    color: grey;
+}
+
+#supporters-images {
+    transform: translateX(+100%);
+    transition: 0.6s;
+    opacity: 0;
+}
+
+#about:hover #supporters-images {
+    transform: translateX(0%);
+    transition: 1s;
+    opacity: 1;
+}
+
+/* ------------ Contact ------------ */
+
+#contact-banner {
+    background-image: url(city.jpg);
+    height: 300px;
+    width: 100%;
+    background-size: cover;
+    background-position-y: 60%;
+    background-repeat: no-repeat;
+    text-align:center;
+    font-size: 2rem;
+    font-family: 'Mansalva', cursive;
+}
+
+#contact-banner h1 {
+    opacity: 0.5;
+    transform: translateY(200%);
+    transition: 1s;
+}
+
+#contact-banner:hover h1 {
+    opacity: 1;
+    transform: translateY(120%);
+    transition: 1s;
+}
+
+#contact-banner h2 {
+    transform: translateY(10%);
+    transition: 1s;
+    font-size: 1.5rem;
+}
+
+#contact-banner:hover h2 {
+    transform: translateY(120%);
+    transition: 1s;
+}
+
+#contact-info {
+    width: 100%;
+    height: 180px;
+    background-color: rgb(39, 39, 39);
+    font-family: 'Mansalva', cursive;
+}
+
+
+
+.contactbox {
+    width: 100%;
+}
+
+
+
+#contact-info h1 {
+    margin: 0px;
+    display: inline-block;
+    margin: 10px 50px 5px 50px;
+}
+
+#contact-box-2 {
+    background-image: url(location.jpg);
+    background-size: contain;
+    color: black;
+}
+
+#contact-info img {
+    width: 30px;
+    height: 30px;
+}
+
+#contact-info ul {
+    list-style-type: none;
+}
+
+#contact-info ul a {
+    text-decoration: none;
+    color: white;
+    margin-left: 20px;
+}
+
+#contact-info ul li {
+    display: inline-block;
+    font-size: 1.2rem;
+    margin-left: 20px;
+}
+
+#contact-info ul a:hover {
+    opacity: 0.7;
+    
+    transition: 0.6s;
+}
+
+/* -------------- Media Queries ------------- */
+
+@media only screen and (max-width: 900px) {
+
+    header {
+        height: 65vh;
+    }
+
+    .community-features {
+        
+        grid-template-columns: 2% 27% 26% 27% 2%;
+        grid-template-rows: 200px 25vw 25vw ;
+        grid-gap: 3%;
+    }
+
+    main {
+        height: 80vh;
+    }
+
+    #about-us-right img {
+        width: 150px;
+        padding: 15px;
+        height: 60px;
+    }
+
+    #about-us-paragraph2 {
+        font-size: 1.4vw;
+    }
+
+    
+    
+}
+
+@media only screen and (max-width: 700px) {
+
+    header {
+        height: 45vh;
+    }
+
+    .community-features {
+        
+        grid-template-columns: 2% 27% 26% 27% 2%;
+        grid-template-rows: 200px 25vw 25vw ;
+        grid-gap: 3%;
+    }
+
+    main {
+        height: 68vh;
+    }
+
+    
+
+    #about-us-paragraph2 {
+        font-size: 1.4vw;
+    }
+
+    #contact-info ul a {
+        text-decoration: none;
+        color: white;
+        margin-left: 10px;
+    }
+
+    .card h2, p {
+        font-size: 10px;
+    }
+    
+    #contact-info ul li {
+        display: inline-block;
+        font-size: 1.0rem;
+        margin-left: 10px;
+    }
+
+    #contact-banner {
+        font-size: 1.5rem;
+    }
+
+    .contactbox h1 {
+        font-size: 20px;
+    }
+    
+    
+}
+
+@media only screen and (max-width: 570px) {
+
+    header {
+        height: 45vh;
+    }
+
+    .community-features {
+        
+        grid-template-columns: 2% 27% 26% 27% 2%;
+        grid-template-rows: 200px 25vw 25vw ;
+        grid-gap: 3%;
+    }
+
+    main {
+        height: 68vh;
+    }
+
+    .card h2, p {
+        font-size: 8px;
+    }
+
+    #about-us-paragraph2 {
+        font-size: 1.4vw;
+    }
+
+    #contact-info ul a {
+        text-decoration: none;
+        color: white;
+        margin-left: 10px;
+    }
+    
+    #contact-info ul li {
+        display: inline-block;
+        font-size: 0.8rem;
+        margin-left: 5px;
+    }
+
+    #contact-banner {
+        font-size: 1.2rem;
+    }
+
+    .contactbox h1 {
+        font-size: 15px;
+    }
+
+    #contact-banner h1 {
+        transform: translateY(240%);
+        transition: 1s;
+    }
+
+    #contact-info img {
+        width: 25px;
+        height: 25px;
+    }
+    
+    
+}
+
+@media only screen and (max-width: 480px) {
+
+    header {
+        height: 30vh;
+    }
+
+    .community-features {
+        
+        grid-template-columns: 2% 29% 28% 29% 2%;
+        grid-template-rows: 200px 25vw 25vw ;
+        grid-gap: 2%;
+    }
+
+    main {
+        height: 50vh;
+    }
+
+    #about-us-right img {
+        width: 110px;
+        padding: 15px;
+        height: 40px;
+    }
+
+    
+
+    #about-us-paragraph2 {
+        font-size: 1.4vw;
+    }
+
+    #contact-info ul a {
+        text-decoration: none;
+        color: white;
+        margin-left: 10px;
+    }
+    
+    #contact-info ul li {
+        display: inline-block;
+        font-size: 0.8rem;
+        margin-left: 5px;
+    }
+
+    #contact-banner {
+        font-size: 1.1rem;
+    }
+
+    .contactbox h1 {
+        font-size: 15px;
+    }
+
+    #contact-banner h1 {
+        transform: translateY(250%);
+        transition: 1s;
+        font-size: 20px;
+    }
+
+    #contact-banner h2 {
+        font-size: 18px;
+    }
+
+    #contact-info img {
+        width: 25px;
+        height: 25px;
+    }
+    
+    #about-us-paragraph1 {
+        font-size: 10px;
+    }
+    
+    #about-us-paragraph2 {
+        font-size:8px;
+    }
+    #about-us-left h2 {
+        font-size: 1rem;
+    }
+
+    #about-us-right h2 {
+        font-size: 1rem;
+    }
+
+    .cf-header {
+        font-size: 25px;
+        text-align:center;
+    }
+
+    .slider-wrapper {
+        font-size: 30px;
+        color:#aaa;
+        font-weight: bold;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #contact-banner {
+          height: 200px;
+      }
+
+      #contact-box-3 {
+          height: 100px;
+      }
+
+      #contact-info {
+          height: 270px;
+      }
+
+      #contact-info ul li {
+        display: block;
+        width: 100%;
+        font-size: 0.9rem;
+        margin-left: 3px;
+    }
+
+    #zeforge {
+        margin-top: 25px;
+    }
+    
+    .card h2, p {
+        font-size: 5px;
+    }
+
+    .menu a {
+        font-size: 8px;
+        margin: 0px;
+    }
+}
+
+
+
